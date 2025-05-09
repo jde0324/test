@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>실버세대 퀴즈 이벤트</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div id="start">
+      <h1>Quizzical</h1>
+      <p>실버세대 대상 퀴즈 이벤트</p>
+      <button onclick="startQuiz()">Start quiz</button>
+    </div>
+    <div class="modal" id="resultModal" style="display:none;">
+      <div class="modal-content" id="scoreDisplay"></div>
+    </div>
+    <form id="quizForm" style="display:none">
+      <div class="question">
+        <h3>1. 대한민국의 수도는?</h3>
+        <label><input type="radio" name="q1" value="서울"> 서울</label><br />
+        <label><input type="radio" name="q1" value="부산"> 부산</label><br />
+        <label><input type="radio" name="q1" value="대구"> 대구</label>
+      </div>
+
+      <div class="question">
+        <h3>2. 여름에 먹기 좋은 음식은?</h3>
+        <label><input type="radio" name="q2" value="냉면"> 냉면</label><br />
+        <label><input type="radio" name="q2" value="감자탕"> 감자탕</label><br />
+        <label><input type="radio" name="q2" value="삼계탕"> 삼계탕</label>
+      </div>
+
+      <div class="question">
+        <h3>3. 대한민국의 국기는?</h3>
+        <label><input type="radio" name="q3" value="태극기"> 태극기</label><br />
+        <label><input type="radio" name="q3" value="성조기"> 성조기</label><br />
+        <label><input type="radio" name="q3" value="일장기"> 일장기</label>
+      </div>
+
+      <div class="question">
+        <h3>4. 겨울 스포츠는?</h3>
+        <label><input type="radio" name="q4" value="스키"> 스키</label><br />
+        <label><input type="radio" name="q4" value="수영"> 수영</label><br />
+        <label><input type="radio" name="q4" value="축구"> 축구</label>
+      </div>
+
+      <div class="question">
+        <h3>5.'춘하추동'은 무엇을 나타내는 말일까요?</h3>
+        <label><input type="radio" name="q5" value="봄"> 계절음식</label><br />
+        <label><input type="radio" name="q5" value="여름"> 사계절</label><br />
+        <label><input type="radio" name="q5" value="겨울"> 4가지 방향</label>
+      </div>
+
+      <div class="question">
+        <h3>6. 전통 명절 중 하나는?</h3>
+        <label><input type="radio" name="q6" value="크리스마스"> 크리스마스</label><br />
+        <label><input type="radio" name="q6" value="추석"> 추석</label><br />
+        <label><input type="radio" name="q6" value="부활절"> 부활절</label>
+      </div>
+
+      <button type="button" onclick="checkAnswers()">Check answers</button>
+    </form>
+    <div class="modal" id="resultModal">
+      <div class="modal-content" id="scoreDisplay"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+      
