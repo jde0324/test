@@ -89,3 +89,5 @@ function submitEntry(e) {
   alert("응모가 완료되었습니다! 감사합니다.");
   document.getElementById("resultModal").style.display = "none";
 }
+window.checkAnswers= checkAnswers
+window.startQuiz= startQuiz
