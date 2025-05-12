@@ -1,98 +1,90 @@
-const answers = {
-    q1: "서울",
-    q2: "냉면",
-    q3: "태극기",
-    q4: "스키",
-    q5: "겨울",
-    q6: "추석"
-  };
-  
-  function startQuiz() {
-    document.getElementById("start").style.display = "none";
-    document.getElementById("quizForm").style.display = "block";
-  }
-  
-  function checkAnswers() {
-    let score = 0;
-    let total = Object.keys(answers).length;
-  
-    for (let key in answers) {
-      let selected = document.querySelector(`input[name='${key}']:checked`);
-      if (selected && selected.value === answers[key]) {
-        score++;
-      }
+function startQuiz() {
+  var startScreen = document.getElementById("start");
+  var quizForm = document.getElementById("quizForm");
+  startScreen.style.display = "none";
+  quizForm.style.display = "block";
+}
+
+function checkAnswers() {
+  var score = 0;
+  var total = 6;
+
+  var q1 = document.querySelector("input[name='q1']:checked");
+  if (q1 && q1.value == "서울") score++;
+
+  var q2 = document.querySelector("input[name='q2']:checked");
+  if (q2 && q2.value == "냉면") score++;
+
+  var q3 = document.querySelector("input[name='q3']:checked");
+  if (q3 && q3.value == "태극기") score++;
+
+  var q4 = document.querySelector("input[name='q4']:checked");
+  if (q4 && q4.value == "스키") score++;
+
+  var q5 = document.querySelector("input[name='q5']:checked");
+  if (q5 && q5.value == "겨울") score++;
+
+  var q6 = document.querySelector("input[name='q6']:checked");
+  if (q6 && q6.value == "추석") score++;
+
+  showScore(score, total);
+}
+
+function showScore(score, total) {
+  var modal = document.getElementById("resultModal");
+  var display = document.getElementById("score");
+  modal.style.display = "flex";
+
+  var current = 0;
+  var interval = setInterval(function () {
+    display.innerHTML = "<h2>점수: " + current + " / " + total + "</h2>";
+    if (current >= score) {
+      clearInterval(interval);
+      setTimeout(showForm, 2000); 
     }
-  
-    const modal = document.getElementById("resultModal");
-    modal.style.display = "flex";
-    document.getElementById("scoreDisplay").innerHTML =
-      `<h2>${score} / ${total} 정답입니다</h2>
-       <button onclick='location.reload()'>다시 시작</button>`;
+    current++;
+  }, 150);
+}
+
+function showForm() {
+  var modalContent = document.getElementById("modalContent");
+  modalContent.innerHTML = ""
+    + "<h2>경품 응모</h2>"
+    + "<form onsubmit='submitEntry(event)'>"
+    + "<input type='text' id='name' placeholder='이름'>"
+    + "<input type='email' id='email' placeholder='이메일'>"
+    + "<input type='text' id='phone' placeholder='전화번호'>"
+    + "<button type='submit'>응모하기</button>"
+    + "</form>";
+}
+
+function submitEntry(e) {
+  e.preventDefault();
+  var name = document.getElementById("name").value.trim();
+  var email = document.getElementById("email").value.trim();
+  var phone = document.getElementById("phone").value.trim();
+
+  if (name === "") {
+    alert("이름을 입력해주세요.");
+    return;
+  }
+  if (email === "") {
+    alert("이메일을 입력해주세요.");
+    return;
+  }
+  if (phone === "") {
+    alert("전화번호를 입력해주세요.");
+    return;
   }
   
-  
-  
-  
-  function checkAnswers() {
-    let score = 0;
-    let total = Object.keys(answers).length;
-  
-    for (let key in answers) {
-      let selected = document.querySelector(`input[name="${key}"]:checked`);
-      if (selected && selected.value === answers[key]) {
-        score++;
-      }
-    }
-  
-    showScore(score, total);
+  if (!email.includes("@")) {
+    alert("이메일에 '@'가 빠졌어요.");
+    return;
+  }
+  if (!email.includes(".")) {
+    alert("이메일에 '.'이 빠졌어요.");
+    return;
   }
   
-  function showScore(score, total) {
-    const modal = document.getElementById("resultModal");
-    const display = document.getElementById("scoreDisplay");
-    modal.style.display = "flex";
-  
-    let current = 0;
-    let interval = setInterval(() => {
-      display.innerHTML = `<h2>점수: ${current} / ${total}</h2>`;
-      if (current >= score) {
-        clearInterval(interval);
-        setTimeout(showForm, 2000);
-      }
-      current++;
-    }, 200);
-  }
-  
-  function showForm() {
-    document.getElementById("modalContent").innerHTML = `
-      <h2>경품 응모</h2>
-      <form onsubmit="submitEntry(event)">
-        <input type="text" id="name" placeholder="이름">
-        <input type="email" id="email" placeholder="이메일">
-        <input type="text" id="phone" placeholder="전화번호">
-        <button type="submit">응모하기</button>
-      </form>
-    `;
-  }
-  
-  function submitEntry(e) {
-    e.preventDefault();
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-  
-    if (!name || !email || !phone) {
-      alert("모든 항목을 입력해주세요.");
-      return;
-    }
-  
-    const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
-    if (!emailRegex.test(email)) {
-      alert("올바른 이메일 형식을 입력해주세요.");
-      return;
-    }
-  
-    alert("응모가 완료되었습니다! 감사합니다.");
-    document.getElementById("resultModal").style.display = "none";
-  }
-  
+  alert("응모가 완료되었습니다! 감사합니다.");
+  document.getElementById("resultModal").style.display = "none";}
